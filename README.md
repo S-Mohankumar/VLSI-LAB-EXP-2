@@ -10,26 +10,116 @@ Spartan6 FPGA
 **LOGIC DIAGRAM**
 
 ENCODER
+# Program
+```
+module encoder(d,a,b,c);
+input [7:0]d;
+output a,b,c;
+or(a,d[4],d[5],d[6],d[7]);
+or(b,d[2],d[3],d[6],d[7]);
+or(c,d[1],d[3],d[5],d[7]);
+endmodule
+```
+# Output
+![WhatsApp Image 2024-03-25 at 11 09 40_d7c5c381](https://github.com/S-Mohankumar/VLSI-LAB-EXP-2/assets/163832108/9a34d2d0-e2b2-42d1-8913-7538e53f531a)
 
 ![image](https://github.com/navaneethans/VLSI-LAB-EXP-2/assets/6987778/3cd1f95e-7531-4cad-9154-fdd397ac439e)
 
 
 DECODER
+# Program
+```
+module decoder_8(a,b,c,y);
+input a,b,c; 
+output[7:0]y; 
+and gl(y[0],(~a),(~b),(~c)); 
+and g2(y[1],(~a),(~b),(c)); 
+and g3(y[2],(~a),(b),(~c));
+and g4(y[3],(~a),(b),(c));
+and g5(y[4],(a),(~b),(~c));
+and g6(y[5],(a), (~b), (c));
+and g7(y[6], (a), (b), (~c)); 
+and g8(y[7], (a), (b), (c));
+endmodule
+```
+# Output
+![WhatsApp Image 2024-03-25 at 11 09 52_cf3a5338](https://github.com/S-Mohankumar/VLSI-LAB-EXP-2/assets/163832108/d10f426c-3d33-46ca-a6fc-d1bb39ed3028)
+
 
 ![image](https://github.com/navaneethans/VLSI-LAB-EXP-2/assets/6987778/45a5e6cf-bbe0-4fd5-ac84-e5ad4477483b)
 
 
 MULTIPLEXER
+# Program
+```
+module mux(a,b,c,d,s0,s1,y);
+input a,b,c,d,s0,s1;
+output y;
+assign y=s1 ?(s0?d:c):(s0?b:a);
+endmodule
+```
+# Output
+![WhatsApp Image 2024-03-25 at 11 10 04_9f283d31](https://github.com/S-Mohankumar/VLSI-LAB-EXP-2/assets/163832108/27a51c20-f2f8-4d41-9d19-339f2be8f9b4)
+
 
 ![image](https://github.com/navaneethans/VLSI-LAB-EXP-2/assets/6987778/427f75b2-8e67-44b9-ac45-a66651787436)
 
 
 DEMULTIPLEXER
+# Program
+```
+module demux(in,s0,s1,s2,d0,d1,d2,d3,d4,d5,d6,d7);
+input in,s0,s1,s2;
+output d0,d1,d2,d3,d4,d5,d6,d7;
+assign d0=(in & ~s2 & ~s1 &~s0),
+d1=(in & ~s2 & ~s1 &s0),
+d2=(in & ~s2 & s1 &~s0),
+d3=(in & ~s2 & s1 &s0),
+d4=(in & s2 & ~s1 &~s0),
+d5=(in & s2 & ~s1 &s0),
+d6=(in & s2 & s1 &~s0),
+d7=(in & s2 & s1 &s0);
+endmodule
+```
+# Output
+![WhatsApp Image 2024-03-25 at 11 10 14_c41a111f](https://github.com/S-Mohankumar/VLSI-LAB-EXP-2/assets/163832108/720824f1-aa34-4120-969c-03bd2e8cb105)
+
 
 ![image](https://github.com/navaneethans/VLSI-LAB-EXP-2/assets/6987778/1c45a7fc-08ac-4f76-87f2-c084e7150557)
 
 
 MAGNITUDE COMPARATOR
+# Program
+```
+module magcomp(a,b,l,g,e);
+input [3:0]a,b;
+output reg l,g,e;
+always @(*)
+begin
+if(a>b)
+begin
+     l=1'b0;
+     g=1'b1;
+     e=1'b0;
+end
+else if(a<b)
+begin
+     l=1'b1;
+     g=1'b0;
+     e=1'b0;
+end
+else
+begin
+     l=1'b0;
+     g=1'b0;
+     e=1'b1;
+end
+end
+endmodule
+```
+# Output
+![WhatsApp Image 2024-03-25 at 11 10 26_fdab3a5b](https://github.com/S-Mohankumar/VLSI-LAB-EXP-2/assets/163832108/5f96384a-7021-4731-9ebc-bc4491bb8325)
+
 
 ![image](https://github.com/navaneethans/VLSI-LAB-EXP-2/assets/6987778/b2fe7a05-6bf7-4dcb-8f5d-28abbf7ea8c2)
 

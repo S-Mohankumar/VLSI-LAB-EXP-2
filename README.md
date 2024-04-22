@@ -5,7 +5,7 @@ AIM:
 
 SOFTWARE REQUIRED:
 vivado 2023.2
-Spartan6 FPGA
+
 
 **LOGIC DIAGRAM**
 
